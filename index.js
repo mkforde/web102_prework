@@ -178,3 +178,27 @@ firstGameContainer.appendChild(firstGameDiv);
 let secondGameDiv = document.createElement("div");
 secondGameDiv.textContent = secondGame.name;
 secondGameContainer.appendChild(secondGameDiv);
+
+/************************************************************************************
+ * Challenge Extra:
+ * Create a search function
+ * Skills used: filter, input eventListener
+ */
+
+function filterSearchedOnly(search) {
+  deleteChildElements(gamesContainer);
+
+  // use filter() to get a list of games that have not yet met their goal
+  let listOfSearchedGames = GAMES_JSON.filter((game) => {
+    // Get rid of case sensitivity
+    return game.name.toLowerCase().includes(search.toLowerCase());
+  });
+
+  // use the function we previously created to add the searched games to the DOM
+  addGamesToPage(listOfSearchedGames);
+}
+
+addEventListener("input", (event) => {
+  let search = event.target.value;
+  filterSearchedOnly(search);
+});
